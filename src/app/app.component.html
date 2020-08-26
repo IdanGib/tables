@@ -1,0 +1,23 @@
+<div class="actions">
+  <button (click)="lock=!lock">{{ lock ? 'unlock' : 'lock' }}</button>
+  <button [disabled]="lock" class="add-row-button" (click)="addRow()">
+    Add row
+  </button>
+  <button  [disabled]="lock" class="add-col-button" (click)="addCol()">
+    Add column
+  </button>
+  <button  [disabled]="lock" class="delete-table" (click)="this.table = null">Delete Table</button>
+</div>
+<div class="table">
+  <div *ngFor="let row of table;let r=index" class="row">
+    <div class="cell" *ngFor="let cell of row;let c=index">
+        <div *ngIf="r === 0" class="col-actions">
+          <button class="remove-col-button" (click)="removeCol(c)">Remove Col</button>
+        </div>
+        <input type="text" [(ngModel)]="table[r][c].val">
+    </div>
+    <div class="row-actions">
+      <button  [disabled]="lock" class="remove-row-button" (click)="this.table.splice(r,1)">Remove</button>
+    </div>
+  </div>
+</div>

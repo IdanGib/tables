@@ -1,0 +1,23 @@
+:host {
+    width: 100%;
+}
+.table {
+    position: relative;
+    padding-top: 24px;
+}
+.col-actions {
+    position: absolute;
+    top: 0;
+}
+.row {
+    display: flex;
+}
+
+.cell {
+    border: solid 1px;
+    border-radius: 0;
+    background-color: khaki;
+}
+.actions {
+    width: 100%;
+}

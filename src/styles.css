@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    box-sizing: border-box;
+    color: #333333;
+    background-color: #eeeeee;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+body * {
+    box-sizing: inherit;
+    color: inherit;
+    background-color: transparent;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    user-select: none;
+}
+
+button {
+    cursor: pointer;
+}
