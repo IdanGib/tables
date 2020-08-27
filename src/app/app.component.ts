@@ -10,7 +10,7 @@ interface Cell {
 })
 export class AppComponent implements OnInit {
   title = 'tables';
-  lock = false;
+  lock = true;
   table: Array<Array<Cell>> = null;
   autoSave = null;
   ngOnInit(): void {
