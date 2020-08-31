@@ -3,7 +3,13 @@
 }
 .table {
     position: relative;
+    overflow: auto;
     padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 650px;
+    width: 100%;
 }
 .col-actions {
     position: absolute;
@@ -18,9 +24,15 @@
     flex-direction: row;
     align-items: center;
 }
-.apply-external-button {
+.copy-input {
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+.external button {
     border: 1px solid;
     padding: 4px 16px;
+    margin-left: 24px;
 }
 .external-table {
     padding: 4px 8px;

@@ -13,9 +13,15 @@
   <button *ngIf="!lock"  [disabled]="lock" class="delete-table" (click)="this.table = null">Delete Table</button>
 </div>
 <div class="external">
-  <label [for]="external">External table:</label>
-  <input class="external-table" type="text" #external>
-  <button (click)="apply(external.value)" class="apply-external-button" [disabled]="!external.value">Apply</button>
+  <div>
+    <label [for]="external">External table:</label>
+    <input class="external-table" type="text" #external>
+    <button (click)="apply(external.value, external)" class="apply-external-button" [disabled]="!external.value">Apply</button>
+  </div>
+  <div>
+    <textarea #cp type="text" class="copy-input"></textarea>
+    <button (click)="copy(cp)">Copy table</button>
+  </div>
 </div>
 <div class="table">
   <div *ngFor="let row of table;let r=index" class="row">

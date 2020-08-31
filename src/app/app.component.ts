@@ -71,6 +71,16 @@ export class AppComponent implements OnInit {
     console.log('save state');
   }
 
+  copy(el: HTMLTextAreaElement) {
+    if(el) {
+      el.value = localStorage.getItem('table');
+      el.select();
+      document.execCommand("copy");
+      alert('table copied!');;
+    }
+
+  }
+
   getLastState() {
     const last = this.tableStates.pop();
     if(last) {
@@ -78,9 +88,10 @@ export class AppComponent implements OnInit {
     }
     return null;
   }
-  apply(val: string) {
+  apply(val: string, el: HTMLInputElement) {
     try {
       this.table = JSON.parse(val);
+      el.value = '';
     } catch(e) {
       alert(e.message);
     }
@@ -90,7 +101,6 @@ export class AppComponent implements OnInit {
   save() {
     const sTable = JSON.stringify(this.table || null);
     localStorage.setItem('table', sTable);
-    this.saveTableState(sTable);
     console.log('save!');
   }
 }
