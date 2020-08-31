@@ -9,6 +9,7 @@ interface Cell {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  tableStates: Array<string> = [];
   title = 'tables';
   lock = true;
   table: Array<Array<Cell>> = null;
@@ -23,16 +24,20 @@ export class AppComponent implements OnInit {
       const sTable = localStorage.getItem('table');
       if(sTable !== JSON.stringify(this.table || null)) {
         this.save();
-        console.log('save!');
       }
     }, 200);
   }
 
+  undo() {
+    this.table = this.getLastState() ?? this.table;
+     
+  }
   stopAutoSave() {
     if(this.autoSave) {
       clearInterval(this.autoSave);
     }
   }
+
   removeCol(c: number) {
     console.log('remove col ', c);
     for(const r of this.table) {
@@ -40,7 +45,6 @@ export class AppComponent implements OnInit {
     }
   }
   addRow() {
-
     if(!this.table) {
       this.table = [];
     }
@@ -58,8 +62,35 @@ export class AppComponent implements OnInit {
       row.push({ val: '' });
     }
   }
+
+  saveTableState(sTable: string) {
+    if(this.tableStates.length > 50) {
+        this.tableStates = [];
+    }
+    this.tableStates.push(sTable);
+    console.log('save state');
+  }
+
+  getLastState() {
+    const last = this.tableStates.pop();
+    if(last) {
+      return JSON.parse(last);
+    }
+    return null;
+  }
+  apply(val: string) {
+    try {
+      this.table = JSON.parse(val);
+    } catch(e) {
+      alert(e.message);
+    }
+ 
+  }
+
   save() {
     const sTable = JSON.stringify(this.table || null);
     localStorage.setItem('table', sTable);
+    this.saveTableState(sTable);
+    console.log('save!');
   }
 }

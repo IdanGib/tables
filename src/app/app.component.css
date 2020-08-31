@@ -13,11 +13,58 @@
     display: flex;
 }
 
+.external {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.apply-external-button {
+    border: 1px solid;
+    padding: 4px 16px;
+}
+.external-table {
+    padding: 4px 8px;
+    resize: none;
+    margin: 4px;
+    border: 1px solid;
+    flex-grow: 1;
+}
 .cell {
     border: solid 1px;
     border-radius: 0;
-    background-color: khaki;
+    background-color: white;
 }
 .actions {
     width: 100%;
+    border-radius: 0;
+}
+
+.actions button {
+    border: 1px solid;
+    margin: 8px;
+    padding: 4px 24px;
+}
+hr {
+    height: 1px;
+    width: 100%;
+    background: gray;
+    margin: 0;
+    padding: 0;
+}
+.edit-table {
+    padding: 16px;
+}
+.edit-table button {
+    border: 1px solid;
+    margin: 8px;
+    padding: 8px 16px;
+    border-radius: 16px;
+}
+.actions button {
+    font-size: 1.5rem;
+}
+.remove-row-button, .remove-col-button {
+    border: 1px solid red;
+    color: red;
+    border-radius: 0;
 }

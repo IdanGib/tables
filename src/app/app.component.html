@@ -1,23 +1,32 @@
+
 <div class="actions">
-  <button (click)="lock=!lock">{{ lock ? 'unlock' : 'lock' }}</button>
-  <button [disabled]="lock" class="add-row-button" (click)="addRow()">
+  <button class="edit" (click)="lock=!lock">{{ lock ? 'Edit' : 'Done' }}</button> 
+</div>
+<hr>
+<div class="edit-table">
+  <button *ngIf="!lock" [disabled]="lock" class="add-row-button" (click)="addRow()">
     Add row
   </button>
-  <button  [disabled]="lock" class="add-col-button" (click)="addCol()">
+  <button *ngIf="!lock"  [disabled]="lock" class="add-col-button" (click)="addCol()">
     Add column
   </button>
-  <button  [disabled]="lock" class="delete-table" (click)="this.table = null">Delete Table</button>
+  <button *ngIf="!lock"  [disabled]="lock" class="delete-table" (click)="this.table = null">Delete Table</button>
+</div>
+<div class="external">
+  <label [for]="external">External table:</label>
+  <input class="external-table" type="text" #external>
+  <button (click)="apply(external.value)" class="apply-external-button" [disabled]="!external.value">Apply</button>
 </div>
 <div class="table">
   <div *ngFor="let row of table;let r=index" class="row">
     <div class="cell" *ngFor="let cell of row;let c=index">
         <div *ngIf="r === 0" class="col-actions">
-          <button class="remove-col-button" (click)="removeCol(c)">Remove Col</button>
+          <button *ngIf="!lock" class="remove-col-button" (click)="removeCol(c)">Remove</button>
         </div>
         <input type="text" [(ngModel)]="table[r][c].val">
     </div>
     <div class="row-actions">
-      <button  [disabled]="lock" class="remove-row-button" (click)="this.table.splice(r,1)">Remove</button>
+      <button *ngIf="!lock"  [disabled]="lock" class="remove-row-button" (click)="this.table.splice(r,1)">Remove</button>
     </div>
   </div>
 </div>
