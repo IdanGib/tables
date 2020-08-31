@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 interface Cell {
   val: string;
   tag?: string;
+  mark?: boolean;
 }
 @Component({
   selector: 'app-root',
@@ -97,7 +98,16 @@ export class AppComponent implements OnInit {
     }
  
   }
-
+  findText(val: string) {
+    let s1 = '', s2 = '';
+    for(const r of this.table) {
+      for(const c of r) {
+        s1 = c.val.toLocaleLowerCase();
+        s2 = val.toLocaleLowerCase();
+        c['mark'] = s1.includes(s2);
+      }
+    }
+  }
   save() {
     const sTable = JSON.stringify(this.table || null);
     localStorage.setItem('table', sTable);

@@ -22,6 +22,10 @@
     <textarea #cp type="text" class="copy-input"></textarea>
     <button (click)="copy(cp)">Copy table</button>
   </div>
+  <form class="find">
+    <input type="submit" value="Find" (click)="findText(find.value)">
+    <input type="text" #find name="find">
+  </form>
 </div>
 <div class="table">
   <div *ngFor="let row of table;let r=index" class="row">
@@ -29,7 +33,7 @@
         <div *ngIf="r === 0" class="col-actions">
           <button *ngIf="!lock" class="remove-col-button" (click)="removeCol(c)">Remove</button>
         </div>
-        <input type="text" [(ngModel)]="table[r][c].val">
+        <input type="text" [(ngModel)]="table[r][c].val" [class.mark]="table[r][c].mark">
     </div>
     <div class="row-actions">
       <button *ngIf="!lock"  [disabled]="lock" class="remove-row-button" (click)="this.table.splice(r,1)">Remove</button>

@@ -24,6 +24,19 @@
     flex-direction: row;
     align-items: center;
 }
+
+.find {
+    margin-left: 48px;
+}
+.find input {
+    border: 1px solid;
+    padding: 4px 16px;
+    margin-right: 4px;
+}
+.mark {
+    background-color: khaki;
+    border-radius: 0;
+}
 .copy-input {
     opacity: 0;
     width: 1px;
